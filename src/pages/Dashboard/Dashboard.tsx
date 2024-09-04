@@ -1,11 +1,10 @@
-import React from 'react';
 import AdminDashboard from '../AdminDashboard/AdminDashboard';
-import CustomerDashboard from '../CustomerDashboard/CustomerDashboard';
+import CustomerDashBoard from '../CustomerDashboard/CustomerDashboard';
 
 function Dashboard() {
   return (
     <div>
-      <CustomerDashboard />
+      <CustomerDashBoard />
       <AdminDashboard />
     </div>
   );
