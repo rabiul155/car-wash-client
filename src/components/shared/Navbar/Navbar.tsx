@@ -13,10 +13,7 @@ function Navbar() {
       nav: 'Services',
       link: '/services',
     },
-    {
-      nav: 'Manage Services',
-      link: '/manage',
-    },
+
     {
       nav: 'Booking',
       link: '/booking',
@@ -24,6 +21,10 @@ function Navbar() {
     {
       nav: 'About',
       link: '/about',
+    },
+    {
+      nav: 'Dashboard',
+      link: '/dashboard',
     },
   ];
 
