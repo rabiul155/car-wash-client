@@ -8,6 +8,7 @@ import About from '@/pages/About/About';
 import Dashboard from '@/pages/Dashboard/Dashboard';
 import Login from '@/pages/Login/Login';
 import Signup from '@/pages/Signup/Signup';
+import ServiceDetails from '@/pages/ServiceDetails/ServiceDetails';
 
 //Routes
 
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: '/services',
         element: <Services />,
+      },
+      {
+        path: '/services/:id',
+        element: <ServiceDetails />,
       },
       {
         path: '/about',

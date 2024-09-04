@@ -1,7 +1,47 @@
-import React from 'react';
+import { useState } from 'react';
+import Loading from '@/components/shared/Loading/Loading';
+import { useGetServicesQuery } from '@/redux/services/services/servicesApi';
+import { ServiceType } from '@/types/service';
+import ServiceCard from '@/components/shared/ServiceCard/ServiceCard';
+
+interface QueryType {
+  [key: string]: string;
+}
 
 function Services() {
-  return <div>Services</div>;
+  const [query, setQuery] = useState<QueryType>({});
+
+  const { data, isLoading, isError } = useGetServicesQuery(query);
+
+  console.log(data);
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (isError) {
+    return <div>Something went wrong</div>;
+  }
+
+  return (
+    <div className="my-6 flex flex-col gap-6">
+      {/* filtering */}
+
+      {/* card section */}
+      {data.data.length > 0 ? (
+        <div className="w-[90%] mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+          {data.data.map((service: ServiceType) => (
+            <ServiceCard key={service._id} service={service}></ServiceCard>
+          ))}
+        </div>
+      ) : (
+        <div className="text-center text-xl m-8 font-bold text-yellow-400 ">
+          No product found
+        </div>
+      )}
+      {/* paginate */}
+    </div>
+  );
 }
 
 export default Services;
