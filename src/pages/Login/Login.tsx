@@ -1,10 +1,11 @@
 import Button from '@/components/shared/Button/Button';
 import InputField from '@/components/shared/InputField/InputField';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Link } from 'react-router-dom';
 
 function Login() {
   return (
-    <div className="flex justify-center items-center mt-16">
+    <div className="flex justify-center items-center h-[90vh]">
       <Card className=" w-[350px]">
         <CardHeader className="flex items-center">
           <CardTitle>Log In</CardTitle>
@@ -27,10 +28,16 @@ function Login() {
                 type="password"
               />
             </div>
-            <footer className="mt-6 flex justify-center">
+            <footer className="mt-4 flex flex-col gap-2 justify-center">
               <Button type="submit" onClick={() => {}}>
                 Log In
               </Button>
+              <div className="text-gray-700 text-sm text-center">
+                <span>Don't Have Account </span>
+                <Link className="font-medium text-blue-900" to="/signup">
+                  Sign Up
+                </Link>
+              </div>
             </footer>
           </form>
         </CardContent>
