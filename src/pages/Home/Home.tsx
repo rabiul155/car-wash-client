@@ -1,10 +1,9 @@
-import React from 'react';
-import { Button } from '@/components/ui/button';
+import Banner from '@/components/home/Banner';
 
 function Home() {
   return (
     <div>
-      <Button>Click me</Button>
+      <Banner />
     </div>
   );
 }
