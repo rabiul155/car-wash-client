@@ -45,13 +45,18 @@ function Navbar() {
       <div className=" h-[10vh] bg-[#f6f7fb] shadow-md">
         <div className=" flex h-full justify-between items-center mx-auto w-[90%]">
           <div className=" flex items-center gap-12">
-            <Link
-              to={'/'}
-              className="text-xl font-bold flex items-center gap-2 "
-            >
-              <span>Car</span>
-              <span className="  text-yellow-500">Doctor</span>
-            </Link>
+            <div className=" flex items-center gap-2">
+              <button onClick={openNav}>
+                <FaBarsStaggered className="h-5 w-5 cursor-pointer md:hidden" />
+              </button>
+              <Link
+                to={'/'}
+                className="text-xl font-bold flex items-center gap-2 "
+              >
+                <span>Car</span>
+                <span className="  text-yellow-500">Doctor</span>
+              </Link>
+            </div>
             <ul className="hidden md:flex justify-center items-center gap-6">
               {navItem.map((item) => (
                 <li
@@ -67,9 +72,11 @@ function Navbar() {
               ))}
             </ul>
           </div>
-          <button onClick={openNav}>
-            <FaBarsStaggered className="h-5 w-5 cursor-pointer md:hidden" />
-          </button>
+          <div>
+            <div className="cursor-pointer px-3 pb-1 pt-0.5 font-semibold border border-gray-800 rounded-full transition-all duration-300 hover:bg-gray-800 hover:text-white">
+              <Link to="/login">LogIn</Link>
+            </div>
+          </div>
         </div>
       </div>
 
