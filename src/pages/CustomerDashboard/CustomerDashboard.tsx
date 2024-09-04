@@ -1,7 +1,7 @@
 import React from 'react';
 
-function CustomerDashBoard() {
+function CustomerDashboard() {
   return <div>CustomerDashBoard</div>;
 }
 
-export default CustomerDashBoard;
+export default CustomerDashboard;
