@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FaXmark, FaBarsStaggered } from 'react-icons/fa6';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { logout } from '@/redux/features/auth/authServices';
 
 type NavItem = {
   nav: string;
@@ -8,6 +10,9 @@ type NavItem = {
 };
 
 function Navbar() {
+  const user = useAppSelector((state) => state.auth.user);
+  const dispatch = useAppDispatch();
+
   const navItem: NavItem[] = [
     {
       nav: 'Services',
@@ -73,9 +78,18 @@ function Navbar() {
             </ul>
           </div>
           <div>
-            <div className="cursor-pointer px-3 pb-1 pt-0.5 font-semibold border border-gray-800 rounded-full transition-all duration-300 hover:bg-gray-800 hover:text-white">
-              <Link to="/login">LogIn</Link>
-            </div>
+            {user?._id ? (
+              <button
+                onClick={() => dispatch(logout())}
+                className="cursor-pointer px-3 pb-1 pt-0.5 font-semibold border border-gray-800 rounded-full transition-all duration-300 hover:bg-gray-800 hover:text-white"
+              >
+                LogOut
+              </button>
+            ) : (
+              <div className="cursor-pointer px-3 pb-1 pt-0.5 font-semibold border border-gray-800 rounded-full transition-all duration-300 hover:bg-gray-800 hover:text-white">
+                <Link to="/login">LogIn</Link>
+              </div>
+            )}
           </div>
         </div>
       </div>

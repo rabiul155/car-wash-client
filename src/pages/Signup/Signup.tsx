@@ -22,13 +22,15 @@ function Signup() {
       role: 'user',
     },
     onSubmit: async (values) => {
-      const res = await signUpApi(values).unwrap();
-      if (res.success) {
-        dispatch(setUser({ user: res.data, token: res.token }));
-        toast(res.message);
-        navigate('/');
-      } else if (res.status === 'error') {
-        toast(res.message);
+      try {
+        const res = await signUpApi(values).unwrap();
+        if (res.success) {
+          dispatch(setUser({ user: res.data, token: res.token }));
+          toast(res.message);
+          navigate('/');
+        }
+      } catch (err: any) {
+        toast(err.data.message || 'An error occur');
       }
     },
   });

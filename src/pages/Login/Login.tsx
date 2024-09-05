@@ -19,13 +19,16 @@ function Login() {
       password: '',
     },
     onSubmit: async (values) => {
-      const res = await logInApi(values).unwrap();
-      if (res.success) {
-        dispatch(setUser({ user: res.data, token: res.token }));
-        toast(res.message);
-        navigate('/');
-      } else if (res.status === 'error') {
-        toast(res.message);
+      try {
+        const res = await logInApi(values).unwrap();
+        if (res.success) {
+          dispatch(setUser({ user: res.data, token: res.token }));
+          toast(res.message);
+          navigate('/');
+        }
+      } catch (error: any) {
+        console.log(error);
+        toast(error.data.message || 'An error occurred');
       }
     },
   });
