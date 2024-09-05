@@ -19,10 +19,10 @@ const Modal = (props: PropsType) => {
       open={props.show}
       as="div"
       transition
-      className="fixed inset-0 flex w-screen items-center justify-center bg-gray-900/50 transition duration-300 ease-out data-[closed]:opacity-0"
+      className="fixed z-50 inset-0 flex w-screen items-center justify-center bg-gray-900/50 transition duration-300 ease-out data-[closed]:opacity-0"
       onClose={() => props.onClose(false)}
     >
-      <div className="fixed w-screen inset-0 z-50 overflow-y-auto">
+      <div className="fixed w-screen inset-0 overflow-y-auto">
         <div className="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
           <DialogPanel className="relative rounded-lg bg-white px-5 py-6 text-left w-full sm:max-w-lg ">
             <DialogTitle className="font-bold">{props.title}</DialogTitle>

@@ -5,6 +5,7 @@ import Loading from '@/components/shared/Loading/Loading';
 import ServiceCard from '@/components/service/ServiceCard';
 import { useGetServicesQuery } from '@/redux/features/services/servicesApi';
 import Modal from '@/components/shared/Modal/Modal';
+import BookServiceForm from '@/components/service/BookServiceForm';
 
 interface QueryType {
   [key: string]: string;
@@ -12,6 +13,7 @@ interface QueryType {
 
 function Services() {
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [service, setService] = useState<ServiceType | null>(null);
   const [query, setQuery] = useState<QueryType>({});
 
   const { data, isLoading, isError } = useGetServicesQuery(query);
@@ -26,14 +28,15 @@ function Services() {
     return <div>Something went wrong</div>;
   }
 
-  const handleBooking = (id: string) => {
+  const handleBooking = (service: ServiceType) => {
+    setService(service);
     setShowModal(true);
   };
 
   return (
     <>
-      <Modal show={showModal} onClose={setShowModal} title="Book Service">
-        <div>Book now</div>
+      <Modal title="Book Service" show={showModal} onClose={setShowModal}>
+        <BookServiceForm service={service} />
       </Modal>
 
       <div className="my-6 flex flex-col gap-6">
