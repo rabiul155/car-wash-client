@@ -1,9 +1,19 @@
 import Button from '@/components/shared/Button/Button';
 import InputField from '@/components/shared/InputField/InputField';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useFormik } from 'formik';
 import { Link } from 'react-router-dom';
 
 function Login() {
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
   return (
     <div className="flex justify-center items-center h-[90vh]">
       <Card className=" w-[350px]">
@@ -11,21 +21,24 @@ function Login() {
           <CardTitle>Log In</CardTitle>
         </CardHeader>
         <CardContent>
-          <form className="mt-4 flex flex-col gap-4">
+          <form
+            onSubmit={formik.handleSubmit}
+            className="mt-4 flex flex-col gap-4"
+          >
             <div className="grid w-full items-center gap-4">
               <InputField
                 label="Email"
                 name="email"
-                onChange={() => {}}
-                value={'example@gmail.com'}
                 type="email"
+                onChange={formik.handleChange}
+                value={formik.values.email}
               />
               <InputField
                 label="Password"
                 name="password"
-                onChange={() => {}}
-                value={'1234567654'}
                 type="password"
+                onChange={formik.handleChange}
+                value={formik.values.password}
               />
             </div>
             <footer className="mt-4 flex flex-col gap-2 justify-center">

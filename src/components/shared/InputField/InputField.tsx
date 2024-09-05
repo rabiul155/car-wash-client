@@ -4,7 +4,7 @@ import { ChangeEvent } from 'react';
 type PropsType = {
   label: string;
   name: string;
-  type?: string;
+  type?: 'text' | 'email' | 'number' | 'password';
   value: string | number;
   className?: string;
   onChange: (e: ChangeEvent<any>) => void;
