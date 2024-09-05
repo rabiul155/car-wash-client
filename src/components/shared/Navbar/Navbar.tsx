@@ -46,7 +46,7 @@ function Navbar() {
   const currentPath = location.pathname;
 
   return (
-    <div className="sticky top-0 z-50">
+    <div className="sticky top-0 ">
       <div className=" h-[10vh] bg-[#f6f7fb] shadow-md">
         <div className=" flex h-full justify-between items-center mx-auto w-[90%]">
           <div className=" flex items-center gap-12">
