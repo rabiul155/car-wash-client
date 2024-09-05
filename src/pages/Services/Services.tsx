@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import Loading from '@/components/shared/Loading/Loading';
-import { useGetServicesQuery } from '@/redux/services/services/servicesApi';
+
 import { ServiceType } from '@/types/service';
+import Loading from '@/components/shared/Loading/Loading';
 import ServiceCard from '@/components/shared/ServiceCard/ServiceCard';
+import { useGetServicesQuery } from '@/redux/features/services/servicesApi';
 
 interface QueryType {
   [key: string]: string;

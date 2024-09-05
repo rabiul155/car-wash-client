@@ -1,9 +1,17 @@
 import Button from '@/components/shared/Button/Button';
 import InputField from '@/components/shared/InputField/InputField';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useSignUpMutation } from '@/redux/features/auth/authApi';
+import { setUser } from '@/redux/features/auth/authServices';
+import { useAppDispatch } from '@/redux/hooks';
 import { useFormik } from 'formik';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
 
 function Signup() {
+  const [signUpApi] = useSignUpMutation();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -13,8 +21,15 @@ function Signup() {
       address: '',
       role: 'user',
     },
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async (values) => {
+      const res = await signUpApi(values).unwrap();
+      if (res.success) {
+        dispatch(setUser({ user: res.data, token: res.token }));
+        toast(res.message);
+        navigate('/');
+      } else if (res.status === 'error') {
+        toast(res.message);
+      }
     },
   });
 

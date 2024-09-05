@@ -1,6 +1,6 @@
 import { baseApi } from '@/redux/api/baseApi';
 
-const productApi = baseApi.injectEndpoints({
+const serviceApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     createService: builder.mutation({
       query: (data) => ({
@@ -51,4 +51,4 @@ export const {
   useGetSingleServiceQuery,
   useDeleteServiceMutation,
   useUpdateServiceMutation,
-} = productApi;
+} = serviceApi;

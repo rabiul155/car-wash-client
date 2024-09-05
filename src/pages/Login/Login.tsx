@@ -1,17 +1,32 @@
 import Button from '@/components/shared/Button/Button';
 import InputField from '@/components/shared/InputField/InputField';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useLogInMutation } from '@/redux/features/auth/authApi';
+import { setUser } from '@/redux/features/auth/authServices';
+import { useAppDispatch } from '@/redux/hooks';
 import { useFormik } from 'formik';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
 
 function Login() {
+  const [logInApi] = useLogInMutation();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues: {
       email: '',
       password: '',
     },
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async (values) => {
+      const res = await logInApi(values).unwrap();
+      if (res.success) {
+        dispatch(setUser({ user: res.data, token: res.token }));
+        toast(res.message);
+        navigate('/');
+      } else if (res.status === 'error') {
+        toast(res.message);
+      }
     },
   });
   return (

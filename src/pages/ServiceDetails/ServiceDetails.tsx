@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { FaRegHeart, FaStar } from 'react-icons/fa';
 import Loading from '@/components/shared/Loading/Loading';
-import { useGetSingleServiceQuery } from '@/redux/services/services/servicesApi';
+import { useGetSingleServiceQuery } from '@/redux/features/services/servicesApi';
 
 function ServiceDetails() {
   const { id } = useParams();
