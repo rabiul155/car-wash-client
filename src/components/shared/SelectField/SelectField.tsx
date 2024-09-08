@@ -6,15 +6,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { SelectOptionType } from '@/types/common';
 
-type ItemType = {
-  label: string;
-  value: string;
-};
 type PropsType = {
   label: string;
-  placeholder: string;
-  items: ItemType[];
+  items: SelectOptionType[];
+  placeholder?: string;
   classNames?: string;
   handleValueChange: (val: string) => void;
 };
@@ -28,12 +25,19 @@ function SelectField(props: PropsType) {
           className={`w-32 h-8 border-0 focus:ring-0 ${props.classNames}
           `}
         >
-          <SelectValue className="py-0" placeholder={props.placeholder} />
+          <SelectValue
+            className="py-0"
+            placeholder={props.placeholder || 'Select One'}
+          />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
             {props.items.map((item) => (
-              <SelectItem key={item.value} value={item.value}>
+              <SelectItem
+                key={item.value}
+                value={item.value}
+                disabled={item.isDisabled}
+              >
                 {item.label}
               </SelectItem>
             ))}
