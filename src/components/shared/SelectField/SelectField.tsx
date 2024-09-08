@@ -18,11 +18,11 @@ type PropsType = {
 
 function SelectField(props: PropsType) {
   return (
-    <div className="flex items-center gap-3">
-      <h4 className=" text-gray-700">{props.label} : </h4>
+    <div className="flex flex-col gap-2">
+      <h4 className=" text-gray-700">{props.label} </h4>
       <Select onValueChange={props.handleValueChange}>
         <SelectTrigger
-          className={`w-32 h-8 border-0 focus:ring-0 ${props.classNames}
+          className={`w-32 max-w-48 h-8 border-1 border-gray-300 ${props.classNames}
           `}
         >
           <SelectValue

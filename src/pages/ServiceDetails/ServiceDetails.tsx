@@ -5,8 +5,12 @@ import { useGetSingleServiceQuery } from '@/redux/features/services/servicesApi'
 import { useGetTimeSlotsQuery } from '@/redux/features/slots/slotsApi';
 import SelectField from '@/components/shared/SelectField/SelectField';
 import { slotOptionHelper } from '@/utils/helper';
+import { useState } from 'react';
+import { Calendar } from 'lucide-react';
+import CalenderDateField from '@/components/shared/CalenderDateField/CalenderDateField';
 
 function ServiceDetails() {
+  const [startDate, setStartDate] = useState(new Date());
   const { id } = useParams();
   const { data, isLoading, isError } = useGetSingleServiceQuery(id);
   const {
@@ -75,8 +79,13 @@ function ServiceDetails() {
               items={slotOptionHelper(slots.data)}
               handleValueChange={handleSlotChange}
             />
+            <CalenderDateField
+              label="Booking Date"
+              date={startDate}
+              setDate={setStartDate}
+            />
           </div>
-          <div className=" flex justify-start items-center gap-3">
+          <div className=" flex items-center gap-3">
             <button
               type="button"
               className="hover:bg-sky-600 duration-300 px-3 py-2 bg-slate-700 text-white rounded-md text-xs"
