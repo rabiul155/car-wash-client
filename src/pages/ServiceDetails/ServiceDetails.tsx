@@ -74,6 +74,7 @@ function ServiceDetails() {
             <SelectField
               label="Time Slots"
               placeholder="Select One"
+              className="w-56"
               items={slotOptionHelper(slots?.data || [])}
               handleValueChange={handleSlotChange}
             />

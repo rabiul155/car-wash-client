@@ -13,7 +13,7 @@ type PropsType = {
   label: string;
   items: SelectOptionType[];
   placeholder?: string;
-  classNames?: string;
+  className?: string;
   handleValueChange: (val: string) => void;
 };
 
@@ -22,7 +22,7 @@ function SelectField(props: PropsType) {
     <div className="flex flex-col gap-2">
       <h4 className=" text-gray-700">{props.label} </h4>
       <Select onValueChange={props.handleValueChange}>
-        <SelectTrigger className={twMerge(`w-32 h-8`, props.classNames)}>
+        <SelectTrigger className={twMerge(`w-32 h-8`, props.className)}>
           <SelectValue placeholder={props.placeholder || 'Select One'} />
         </SelectTrigger>
         <SelectContent>
