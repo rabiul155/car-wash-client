@@ -1,3 +1,4 @@
+import { twMerge } from 'tailwind-merge';
 import {
   Select,
   SelectContent,
@@ -21,14 +22,8 @@ function SelectField(props: PropsType) {
     <div className="flex flex-col gap-2">
       <h4 className=" text-gray-700">{props.label} </h4>
       <Select onValueChange={props.handleValueChange}>
-        <SelectTrigger
-          className={`w-32 max-w-48 h-8 border-1 border-gray-300 ${props.classNames}
-          `}
-        >
-          <SelectValue
-            className="py-0"
-            placeholder={props.placeholder || 'Select One'}
-          />
+        <SelectTrigger className={twMerge(`w-32 h-8`, props.classNames)}>
+          <SelectValue placeholder={props.placeholder || 'Select One'} />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>

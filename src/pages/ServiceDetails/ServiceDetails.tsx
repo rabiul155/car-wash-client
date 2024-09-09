@@ -1,29 +1,27 @@
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { FaRegHeart, FaStar } from 'react-icons/fa';
 import Loading from '@/components/shared/Loading/Loading';
 import { useGetSingleServiceQuery } from '@/redux/features/services/servicesApi';
 import { useGetTimeSlotsQuery } from '@/redux/features/slots/slotsApi';
 import SelectField from '@/components/shared/SelectField/SelectField';
-import { slotOptionHelper } from '@/utils/helper';
-import { useState } from 'react';
-import { Calendar } from 'lucide-react';
+import { dateHelper, slotOptionHelper } from '@/utils/helper';
 import CalenderDateField from '@/components/shared/CalenderDateField/CalenderDateField';
 
 function ServiceDetails() {
-  const [startDate, setStartDate] = useState(new Date());
+  const [date, setDate] = useState<Date>(new Date());
   const { id } = useParams();
   const { data, isLoading, isError } = useGetSingleServiceQuery(id);
-  const {
-    data: slots,
-    isLoading: slotLoading,
-    isError: slotError,
-  } = useGetTimeSlotsQuery({ serviceId: id });
+  const { data: slots } = useGetTimeSlotsQuery({
+    serviceId: id,
+    date: dateHelper(date),
+  });
 
-  if (isLoading || slotLoading) {
+  if (isLoading) {
     return <Loading />;
   }
 
-  if (isError || slotError) return <div>Something went wrong</div>;
+  if (isError) return <div>Something went wrong</div>;
 
   const handleSlotChange = (slot: string) => {
     console.log(slot);
@@ -76,13 +74,13 @@ function ServiceDetails() {
             <SelectField
               label="Time Slots"
               placeholder="Select One"
-              items={slotOptionHelper(slots.data)}
+              items={slotOptionHelper(slots?.data || [])}
               handleValueChange={handleSlotChange}
             />
             <CalenderDateField
               label="Booking Date"
-              date={startDate}
-              setDate={setStartDate}
+              date={date}
+              setDate={setDate}
             />
           </div>
           <div className=" flex items-center gap-3">

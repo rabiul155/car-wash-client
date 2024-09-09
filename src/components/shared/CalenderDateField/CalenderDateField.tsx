@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 type PropsType = {
   label: string;
   date: Date;
-  setDate: (date: Date | null) => void;
+  setDate: (date: Date) => void;
 };
 
 function CalenderDateField(props: PropsType) {
@@ -15,7 +14,7 @@ function CalenderDateField(props: PropsType) {
       <DatePicker
         className="min-w-32 h-7 border rounded-md border-gray-300 px-2"
         selected={props.date}
-        onChange={(date) => props.setDate(date)}
+        onChange={(date) => props.setDate(date as Date)}
       />
     </div>
   );
