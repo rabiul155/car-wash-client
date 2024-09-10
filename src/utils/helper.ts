@@ -1,4 +1,7 @@
 export const slotOptionHelper = (options: any) => {
+  if (!options || options.length === 0) {
+    return [];
+  }
   const formattedOption = options.map((option: any) => {
     return {
       label: `${option.startTime} - ${option.endTime}`,

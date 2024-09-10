@@ -71,19 +71,23 @@ function ServiceDetails() {
 
         <form className="flex flex-col gap-4">
           <div>
-            <SelectField
-              label="Time Slots"
-              placeholder="Select One"
-              className="w-56"
-              items={slotOptionHelper(slots?.data || [])}
-              handleValueChange={handleSlotChange}
-            />
             <CalenderDateField
               label="Booking Date"
+              className={'w-56'}
               date={date}
               setDate={setDate}
             />
           </div>
+          <div>
+            <SelectField
+              label="Time Slots"
+              placeholder="Select One"
+              className="w-56"
+              items={slotOptionHelper(slots?.data)}
+              handleValueChange={handleSlotChange}
+            />
+          </div>
+
           <div className=" flex items-center gap-3">
             <button
               type="button"
