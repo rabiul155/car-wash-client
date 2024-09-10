@@ -1,8 +1,6 @@
-import { ServiceType } from '@/types/service';
-import React from 'react';
-
 type PropsType = {
-  service: ServiceType | null;
+  serviceId: string;
+  slotId: string;
 };
 
 function BookServiceForm(props: PropsType) {
