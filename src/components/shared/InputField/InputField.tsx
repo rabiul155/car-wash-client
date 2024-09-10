@@ -7,7 +7,9 @@ type PropsType = {
   type?: 'text' | 'email' | 'number' | 'password';
   value: string | number;
   className?: string;
-  onChange: (e: ChangeEvent<any>) => void;
+  error?: string;
+  onBlur: (event: React.FocusEvent<HTMLInputElement>) => void;
+  onChange: (event: ChangeEvent<any>) => void;
 };
 function InputField(props: PropsType) {
   return (
@@ -20,11 +22,15 @@ function InputField(props: PropsType) {
         name={props.name}
         value={props.value}
         onChange={props.onChange}
+        onBlur={props.onBlur}
         className={`h-9 focus:border-0 focus:outline-none ${props.className}`}
         type={props.type || 'text'}
         required
         placeholder="Type here"
       />
+      {props?.error && (
+        <div className="px-1 text-red-500 text-xs italic">{props.error}</div>
+      )}
     </div>
   );
 }

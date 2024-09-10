@@ -7,6 +7,17 @@ import { useAppDispatch } from '@/redux/hooks';
 import { useFormik } from 'formik';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
+import * as Yup from 'yup';
+
+const validationSchema = Yup.object().shape({
+  email: Yup.string()
+    .email('Invalid email format')
+    .required('Email is required'),
+
+  password: Yup.string()
+    .min(6, 'Password must be at least 6 characters long')
+    .required('Password is required'),
+});
 
 function Login() {
   const [logInApi] = useLogInMutation();
@@ -18,6 +29,7 @@ function Login() {
       email: '',
       password: '',
     },
+    validationSchema: validationSchema,
     onSubmit: async (values) => {
       try {
         const res = await logInApi(values).unwrap();
@@ -48,15 +60,21 @@ function Login() {
                 label="Email"
                 name="email"
                 type="email"
+                onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
                 value={formik.values.email}
+                error={formik.touched.email ? formik.errors.email : undefined}
               />
               <InputField
                 label="Password"
                 name="password"
                 type="password"
+                onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
                 value={formik.values.password}
+                error={
+                  formik.touched.password ? formik.errors.password : undefined
+                }
               />
             </div>
             <footer className="mt-4 flex flex-col gap-2 justify-center">
