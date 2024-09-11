@@ -1,5 +1,6 @@
 import { Input } from '../ui/input';
 import SelectField from '../shared/SelectField/SelectField';
+import { CiSearch } from 'react-icons/ci';
 
 const category = [
   {
@@ -49,13 +50,14 @@ function FilterService(props: FilteringProps) {
             }
           />
         </div>
-        <div>
+        <div className="relative">
           <Input
-            className="w-64 h-8 border-0 outline-none ring-0 focus:ring-0 focus:outline-none"
+            className="w-64 h-8 border-0 outline-none ring-0 focus:ring-0 focus:outline-none ps-9"
             type="text"
-            placeholder="Search..."
+            placeholder="search . . ."
             onChange={(e) => props.handleSearchParams('search', e.target.value)}
           />
+          <CiSearch className="absolute top-2 left-2 size-5" />
         </div>
         <div className="flex flex-col lg:flex-row gap-4">
           <SelectField
