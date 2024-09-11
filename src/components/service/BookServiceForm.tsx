@@ -3,11 +3,13 @@ import InputField from '../shared/InputField/InputField';
 import * as Yup from 'yup';
 import SelectField from '../shared/SelectField/SelectField';
 import { Button } from '../ui/button';
+import { toast } from 'sonner';
+import { useCreateBookingMutation } from '@/redux/features/booking/bookingApi';
 
 type PropsType = {
   serviceId: string;
   slotId: string;
-  modalClose: (val: boolean) => void;
+  showModal: (val: boolean) => void;
 };
 
 const validationSchema = Yup.object().shape({
@@ -62,6 +64,7 @@ const vehicleOption = [
 ];
 
 function BookServiceForm(props: PropsType) {
+  const [bookingApi] = useCreateBookingMutation();
   const formik = useFormik({
     initialValues: {
       serviceId: props.serviceId,
@@ -74,8 +77,16 @@ function BookServiceForm(props: PropsType) {
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      console.log(values);
-      props.modalClose(true);
+      try {
+        const result = await bookingApi(values).unwrap();
+        if (result) {
+          toast(result.message);
+        }
+      } catch (error: any) {
+        toast(error.data.message || 'An error occurred');
+      } finally {
+        props.showModal(false);
+      }
     },
   });
   return (

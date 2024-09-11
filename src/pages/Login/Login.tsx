@@ -39,7 +39,7 @@ function Login() {
           navigate('/');
         }
       } catch (error: any) {
-        console.log(error);
+       
         toast(error.data.message || 'An error occurred');
       }
     },

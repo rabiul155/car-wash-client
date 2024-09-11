@@ -11,10 +11,10 @@ import Modal from '@/components/shared/Modal/Modal';
 import BookServiceForm from '@/components/service/BookServiceForm';
 
 function ServiceDetails() {
+  const { id } = useParams();
   const [showModal, setShowModal] = useState<boolean>(false);
   const [slotId, setSlotId] = useState<string>('');
   const [date, setDate] = useState<Date>(new Date());
-  const { id } = useParams();
   const { data, isLoading, isError } = useGetSingleServiceQuery(id);
   const { data: slotsData } = useGetTimeSlotsQuery({
     serviceId: id,
@@ -27,9 +27,10 @@ function ServiceDetails() {
 
   if (isError) return <div>Something went wrong</div>;
 
-  useEffect(() => {
+  const dateChange = (date: Date) => {
+    setDate(date);
     setSlotId('');
-  }, [date]);
+  };
 
   return (
     <>
@@ -37,7 +38,7 @@ function ServiceDetails() {
         <BookServiceForm
           serviceId={id as string}
           slotId={slotId as string}
-          modalClose={setShowModal}
+          showModal={setShowModal}
         />
       </Modal>
       <div className="text-gray-700 grid grid-cols-1 lg:grid-cols-8 gap-6 m-6">
@@ -87,7 +88,7 @@ function ServiceDetails() {
                 label="Booking Date"
                 className={'w-56'}
                 date={date}
-                setDate={setDate}
+                setDate={dateChange}
               />
             </div>
             <div>
