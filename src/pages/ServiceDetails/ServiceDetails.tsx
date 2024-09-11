@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { FaRegHeart, FaStar } from 'react-icons/fa';
 import Loading from '@/components/shared/Loading/Loading';
@@ -21,21 +21,11 @@ function ServiceDetails() {
     date: dateHelper(date),
   });
 
-  console.log(slotsData);
-
   if (isLoading) {
     return <Loading />;
   }
 
   if (isError) return <div>Something went wrong</div>;
-
-  const handleSlotChange = (slot: string) => {
-    setSlotId(slot);
-  };
-  const handleBooking = () => {
-    setShowModal(true);
-    console.log('hit');
-  };
 
   return (
     <>
@@ -98,13 +88,13 @@ function ServiceDetails() {
                 placeholder="Select One"
                 className="w-56"
                 items={slotOptionHelper(slotsData?.data)}
-                handleValueChange={handleSlotChange}
+                handleValueChange={(val) => setSlotId(val)}
               />
             </div>
 
             <div className=" flex items-center gap-3">
               <button
-                onClick={handleBooking}
+                onClick={() => setShowModal(true)}
                 type="button"
                 className={`duration-300 px-3 py-2 text-white rounded-md text-sm ${slotId ? 'cursor-pointer bg-slate-700 hover:bg-sky-600 ' : 'cursor-not-allowed bg-gray-500'}`}
               >

@@ -5,7 +5,7 @@ type PropsType = {
   label: string;
   name: string;
   type?: 'text' | 'email' | 'number' | 'password';
-  value: string | number;
+  value: string | number | undefined;
   className?: string;
   error?: string;
   onBlur: (event: React.FocusEvent<HTMLInputElement>) => void;

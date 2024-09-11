@@ -15,12 +15,13 @@ type PropsType = {
   placeholder?: string;
   className?: string;
   handleValueChange: (val: string) => void;
+  error?: string;
 };
 
 function SelectField(props: PropsType) {
   return (
     <div className="flex flex-col gap-1">
-      <h4 className=" text-gray-700">{props.label} </h4>
+      <label className="mx-1 text-sm">{props.label} </label>
       <Select onValueChange={props.handleValueChange}>
         <SelectTrigger className={twMerge(`w-32 h-8 z-0`, props.className)}>
           <SelectValue placeholder={props.placeholder || 'Select One'} />
@@ -45,6 +46,9 @@ function SelectField(props: PropsType) {
           </SelectGroup>
         </SelectContent>
       </Select>
+      {props?.error && (
+        <div className="px-1 text-red-500 text-xs italic">{props.error}</div>
+      )}
     </div>
   );
 }
