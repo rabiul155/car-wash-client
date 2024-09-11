@@ -7,16 +7,19 @@ import { Button } from '../ui/button';
 type PropsType = {
   serviceId: string;
   slotId: string;
+  modalClose: (val: boolean) => void;
 };
 
 const validationSchema = Yup.object().shape({
-  email: Yup.string()
-    .email('Invalid email format')
-    .required('Email is required'),
+  vehicleType: Yup.string().required('Vehicle type is required'),
+  vehicleBrand: Yup.string().required('Vehicle brand is required'),
+  vehicleModel: Yup.string().required('Vehicle model is required'),
+  manufacturingYear: Yup.number()
+    .min(1886, 'Manufacturing year cannot be before 1886') // first car invented
+    .max(new Date().getFullYear(), 'Manufacturing year cannot be in the future')
+    .required('Manufacturing year is required'),
 
-  password: Yup.string()
-    .min(6, 'Password must be at least 6 characters long')
-    .required('Password is required'),
+  registrationPlate: Yup.string().required('Plate number is required'),
 });
 
 const vehicleOption = [
@@ -72,6 +75,7 @@ function BookServiceForm(props: PropsType) {
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       console.log(values);
+      props.modalClose(true);
     },
   });
   return (
@@ -83,7 +87,6 @@ function BookServiceForm(props: PropsType) {
           className="w-full"
           handleValueChange={(val) => {
             formik.setFieldValue('vehicleType', val);
-            formik.setFieldTouched('vehicleType', true);
           }}
           error={
             formik.touched.vehicleType ? formik.errors.vehicleType : undefined
@@ -127,7 +130,7 @@ function BookServiceForm(props: PropsType) {
         <InputField
           label="Registration plate number"
           name="registrationPlate"
-          type="number"
+          type="text"
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
           value={formik.values.registrationPlate}

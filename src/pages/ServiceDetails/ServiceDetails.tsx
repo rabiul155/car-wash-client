@@ -12,7 +12,7 @@ import BookServiceForm from '@/components/service/BookServiceForm';
 
 function ServiceDetails() {
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [slotId, setSlotId] = useState<string | null>();
+  const [slotId, setSlotId] = useState<string>('');
   const [date, setDate] = useState<Date>(new Date());
   const { id } = useParams();
   const { data, isLoading, isError } = useGetSingleServiceQuery(id);
@@ -27,10 +27,18 @@ function ServiceDetails() {
 
   if (isError) return <div>Something went wrong</div>;
 
+  useEffect(() => {
+    setSlotId('');
+  }, [date]);
+
   return (
     <>
       <Modal title="Book Service" show={showModal} onClose={setShowModal}>
-        <BookServiceForm serviceId={id as string} slotId={slotId as string} />
+        <BookServiceForm
+          serviceId={id as string}
+          slotId={slotId as string}
+          modalClose={setShowModal}
+        />
       </Modal>
       <div className="text-gray-700 grid grid-cols-1 lg:grid-cols-8 gap-6 m-6">
         <div className=" hidden lg:block">
@@ -94,6 +102,7 @@ function ServiceDetails() {
 
             <div className=" flex items-center gap-3">
               <button
+                disabled={!slotId}
                 onClick={() => setShowModal(true)}
                 type="button"
                 className={`duration-300 px-3 py-2 text-white rounded-md text-sm ${slotId ? 'cursor-pointer bg-slate-700 hover:bg-sky-600 ' : 'cursor-not-allowed bg-gray-500'}`}
