@@ -12,7 +12,6 @@ import { Link } from 'react-router-dom';
 
 type PropsType = {
   service: ServiceType;
-  handleBooking: (service: ServiceType) => void;
 };
 
 function ServiceCard(props: PropsType) {
@@ -58,13 +57,6 @@ function ServiceCard(props: PropsType) {
         </CardContent>
 
         <CardFooter className="flex gap-3">
-          <button
-            onClick={() => props.handleBooking(props.service)}
-            type="button"
-            className="w-full cursor-pointer text-center py-1.5 font-semibold border  border-gray-800 rounded-full transition-all duration-300 hover:bg-gray-800 hover:text-white"
-          >
-            Book Now
-          </button>
           <Link
             to={`/services/${props.service._id}`}
             className="w-full cursor-pointer text-center py-1.5 font-semibold border border-gray-800 rounded-full transition-all duration-300 hover:bg-gray-800 hover:text-white"
