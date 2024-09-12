@@ -9,6 +9,7 @@ import Dashboard from '@/pages/Dashboard/Dashboard';
 import Login from '@/pages/Login/Login';
 import Signup from '@/pages/Signup/Signup';
 import ServiceDetails from '@/pages/ServiceDetails/ServiceDetails';
+import NotFoundPage from '@/pages/NotFound/NotFoundPage';
 
 //Routes
 
@@ -53,7 +54,7 @@ const router = createBrowserRouter([
   },
   {
     path: '*',
-    element: <div>Page not found</div>,
+    element: <NotFoundPage />,
   },
 ]);
 

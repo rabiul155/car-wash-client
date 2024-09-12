@@ -61,7 +61,7 @@ function ServiceCard(props: PropsType) {
           </div>
 
           <div>
-            <span>{props.service.description.substring(0, 100)}</span>
+            <span>{props.service.description.substring(0, 80)}</span>
           </div>
         </CardContent>
 
