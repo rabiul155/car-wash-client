@@ -27,13 +27,18 @@ function ServiceCard(props: PropsType) {
             />
           </CardHeader>
         </Link>
-        <CardContent className="flex flex-col gap-4 p-4">
-          <CardTitle className=" text-2xl text-gray-800 font-bold flex justify-between">
-            <div className=" text-gray-800 text-xl">
-              <span> {props.service?.name}</span>
+        <CardContent className="flex flex-col gap-2 p-4">
+          <CardTitle className="flex flex-col gap-2">
+            <div className=" text-2xl text-gray-800 font-bold flex justify-between">
+              <div className=" text-gray-800 text-xl">
+                <span> {props.service?.name}</span>
+              </div>
+              <div className="font-medium text-gray-800 text-xl">
+                <span>{props.service?.price}</span> <small>BDT</small>
+              </div>
             </div>
-            <div className="font-medium text-gray-800 text-xl">
-              <span>{props.service?.price}</span> <small>BDT</small>
+            <div className="font-medium text-gray-700 text-lg">
+              <span>Category : {props.service?.category}</span>
             </div>
           </CardTitle>
 
@@ -53,6 +58,10 @@ function ServiceCard(props: PropsType) {
           <div className="text-gray-800 font-medium">
             <span>Duration : {props.service.duration}</span>
             <small className="text-sm">min</small>
+          </div>
+
+          <div>
+            <span>{props.service.description.substring(0, 100)}</span>
           </div>
         </CardContent>
 

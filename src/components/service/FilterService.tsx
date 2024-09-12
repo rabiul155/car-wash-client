@@ -30,6 +30,14 @@ const sortBy = [
     label: 'Price, high to low',
     value: '-price',
   },
+  {
+    label: 'Duration, low to high',
+    value: 'duration',
+  },
+  {
+    label: 'Duration, low to high',
+    value: '-duration',
+  },
 ];
 
 type FilteringProps = {
@@ -42,7 +50,6 @@ function FilterService(props: FilteringProps) {
       <div className="w-[90%] flex flex-col lg:flex-row gap-4 justify-between mx-auto py-3">
         <div>
           <SelectField
-            label="Category"
             items={category}
             placeholder="Category"
             handleValueChange={(val) =>
@@ -61,9 +68,8 @@ function FilterService(props: FilteringProps) {
         </div>
         <div className="flex flex-col lg:flex-row gap-4">
           <SelectField
-            label="Sort service"
             items={sortBy}
-            placeholder="Select a type"
+            placeholder="Sort by"
             handleValueChange={(val) => props.handleSearchParams('sort', val)}
           />
         </div>

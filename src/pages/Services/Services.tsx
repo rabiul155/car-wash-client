@@ -11,11 +11,7 @@ interface QueryType {
 }
 
 function Services() {
-  const [query, setQuery] = useState<QueryType>({
-    category: '',
-    search: '',
-    sort: '',
-  });
+  const [query, setQuery] = useState<QueryType>({});
 
   const { data, isLoading, isError } = useGetServicesQuery(query);
 
@@ -46,7 +42,7 @@ function Services() {
         </div>
       ) : (
         <div className="text-center text-xl m-8 font-bold text-yellow-400 ">
-          No product found
+          No Data found
         </div>
       )}
     </div>
