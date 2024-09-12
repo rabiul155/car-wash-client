@@ -1,14 +1,11 @@
-import { useEffect } from 'react';
 import { useGetServicesQuery } from '@/redux/features/services/servicesApi';
 import Loading from '../shared/Loading/Loading';
 import { ServiceType } from '@/types/service';
 import ServiceCard from '../service/ServiceCard';
 
 function Featured() {
-  const { data, isLoading, isError, refetch } = useGetServicesQuery({});
-  useEffect(() => {
-    refetch();
-  }, []);
+  const { data, isLoading, isError } = useGetServicesQuery({});
+
   if (isLoading) {
     return <Loading />;
   }
