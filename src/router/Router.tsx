@@ -10,6 +10,7 @@ import Login from '@/pages/Login/Login';
 import Signup from '@/pages/Signup/Signup';
 import ServiceDetails from '@/pages/ServiceDetails/ServiceDetails';
 import NotFoundPage from '@/pages/NotFound/NotFoundPage';
+import Review from '@/pages/Review/Review';
 
 //Routes
 
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: '/booking',
         element: <About />,
+      },
+      {
+        path: '/review',
+        element: <Review />,
       },
       {
         path: '/about',

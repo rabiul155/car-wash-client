@@ -1,34 +1,32 @@
-import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import { ChangeEvent } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 type PropsType = {
   label: string;
   name: string;
-  type?: 'text' | 'email' | 'number' | 'password';
-  value: string | number | undefined;
+  value: string | undefined;
   className?: string;
   error?: string;
-  onBlur: (event: React.FocusEvent<HTMLInputElement>) => void;
+  onBlur: (event: React.FocusEvent<HTMLTextAreaElement>) => void;
   onChange: (event: ChangeEvent<any>) => void;
 };
-function InputField(props: PropsType) {
+function TextAreaField(props: PropsType) {
   return (
     <div className="flex flex-col gap-1">
       <label className="mx-1 text-sm" htmlFor={props.name}>
         {props.label}
       </label>
-      <Input
+      <Textarea
         id={props.name}
         name={props.name}
         value={props.value}
         onChange={props.onChange}
         onBlur={props.onBlur}
         className={twMerge(
-          `h-9 focus:border-0 focus:outline-none`,
+          `h-12 focus:border-0 focus:outline-none`,
           props.className,
         )}
-        type={props.type || 'text'}
         required
         placeholder="Type here"
       />
@@ -39,4 +37,4 @@ function InputField(props: PropsType) {
   );
 }
 
-export default InputField;
+export default TextAreaField;
