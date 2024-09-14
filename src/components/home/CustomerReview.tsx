@@ -58,23 +58,15 @@ function CustomerReview() {
             className="md:basis-1/2 lg:basis-1/3 lg:p-8"
           >
             <Card>
-              <CardContent className="relative flex aspect-square items-center justify-center rounded-md bg-slate-100 overflow-hidden">
-                <div className="absolute top-8 hidden lg:flex justify-center ">
-                  <img
-                    src={customer?.image}
-                    className="size-36 rounded-full object-cover object-center"
-                    alt=""
-                  />
-                </div>
-                <div className="absolute text-gray-800 bottom-2 lg:bottom-4 flex justify-center">
-                  <div className="p-4">
-                    <h4 className="text-xl font-semibold text-center">
-                      {customer.name}
-                    </h4>
-                    <p className="text-sm text-center my-2">
-                      {customer.description}
-                    </p>
-                  </div>
+              <CardContent className="flex min-h-52 pb-0 items-center justify-center rounded-md bg-slate-100 ">
+                <div className="p-4">
+                  <h4 className="text-xl font-semibold text-center">
+                    {customer.name}
+                  </h4>
+
+                  <p className="text-sm text-center my-2">
+                    {customer.description}
+                  </p>
                 </div>
               </CardContent>
             </Card>

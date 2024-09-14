@@ -43,6 +43,7 @@ function Signup() {
     },
     validationSchema: userValidationSchema,
     onSubmit: async (values) => {
+      values.phone = values.phone.toString();
       try {
         const res = await signUpApi(values).unwrap();
         if (res.success) {
