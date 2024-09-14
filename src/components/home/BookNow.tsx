@@ -1,11 +1,10 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 
 function BookNow() {
   return (
     <div className="flex bg-slate-100 py-12 flex-col lg:flex-row items-center justify-center gap-4">
       <h2 className="text-center lg:text-xl font-semibold text-gray-700 px-4">
-        VIEW OUR SERVICES AND BOOK YOUR NEED
+        VIEW OUR SERVICES AND BOOK YOUR NEEDS
       </h2>
       <Link
         to={'/services'}
