@@ -3,3 +3,10 @@ export type SelectOptionType = {
   value: string;
   isDisabled?: boolean;
 };
+
+export type ReviewDataType = {
+  _id: string;
+  name: string;
+  rating: number;
+  message: string;
+};

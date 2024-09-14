@@ -12,6 +12,14 @@ export const slotOptionHelper = (options: any) => {
   return formattedOption;
 };
 
+export const createArray = (val: number) => {
+  const arr = [];
+  for (let i = 1; i <= val; i++) {
+    arr.push(i);
+  }
+  return arr;
+};
+
 export const dateHelper = (date: Date) => {
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');

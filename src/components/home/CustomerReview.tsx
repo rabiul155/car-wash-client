@@ -6,44 +6,19 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
-
-import image1 from '@/assets/customer1.jpg';
-import image2 from '@/assets/customer2.jpg';
-import image3 from '@/assets/customer3.jpg';
-import image4 from '@/assets/customer4.jpg';
-
-const customersData = [
-  {
-    id: 1,
-    name: 'Amir khan',
-    image: image1,
-    description:
-      'Amazing service! They were quick and efficient with the oil change, and the staff explained everything clearly. I’m very satisfied and will return for my next maintenance!',
-  },
-  {
-    id: 2,
-    name: 'Mr Basil ',
-    image: image2,
-    description:
-      'The brake pad replacement was done in a timely manner. The staff was helpful, though the waiting time was slightly longer than expected. Overall, a good experience.',
-  },
-  {
-    id: 3,
-    name: 'Alex Bean',
-    image: image3,
-    description:
-      'I had a problem with my engine, and they were able to quickly diagnose and fix it. The team was knowledgeable, and their prices were fair. Highly recommend for engine work!',
-  },
-  {
-    id: 4,
-    name: 'Mirza Hasan',
-    image: image4,
-    description:
-      'The tire rotation service was efficient, and the technician gave me some helpful advice on maintaining my tires. Overall, I’m happy with the service, although the waiting area could use some improvement.',
-  },
-];
+import { useGetReviewQuery } from '@/redux/features/review/reviewApi';
+import { FaStar } from 'react-icons/fa6';
+import Loading from '../shared/Loading/Loading';
+import { ReviewDataType } from '@/types/common';
+import { createArray } from '@/utils/helper';
 
 function CustomerReview() {
+  const { data: reviewData, isLoading } = useGetReviewQuery({ limit: 3 });
+
+  if (isLoading) {
+    <Loading />;
+  }
+
   return (
     <Carousel
       opts={{
@@ -52,21 +27,23 @@ function CustomerReview() {
       className="w-full px-16"
     >
       <CarouselContent className="flex">
-        {customersData.map((customer) => (
+        {reviewData?.data?.map((review: ReviewDataType) => (
           <CarouselItem
-            key={customer.id}
+            key={review._id}
             className="md:basis-1/2 lg:basis-1/3 lg:p-8"
           >
             <Card>
               <CardContent className="flex min-h-52 pb-0 items-center justify-center rounded-md bg-slate-100 ">
                 <div className="p-4">
                   <h4 className="text-xl font-semibold text-center">
-                    {customer.name}
+                    {review.name}
                   </h4>
-
-                  <p className="text-sm text-center my-2">
-                    {customer.description}
-                  </p>
+                  <div className="flex justify-center gap-1 p-4">
+                    {createArray(review.rating).map((el) => (
+                      <FaStar className="size-5 text-yellow-400" key={el} />
+                    ))}
+                  </div>
+                  <p className="text-sm text-center my-2">{review.message}</p>
                 </div>
               </CardContent>
             </Card>
