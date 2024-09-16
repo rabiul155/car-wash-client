@@ -11,6 +11,7 @@ import Signup from '@/pages/Signup/Signup';
 import ServiceDetails from '@/pages/ServiceDetails/ServiceDetails';
 import NotFoundPage from '@/pages/NotFound/NotFoundPage';
 import Review from '@/pages/Review/Review';
+import Booking from '@/pages/Booking/Booking';
 
 //Routes
 
@@ -41,7 +42,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/booking',
-        element: <About />,
+        element: <Booking />,
       },
       {
         path: '/review',

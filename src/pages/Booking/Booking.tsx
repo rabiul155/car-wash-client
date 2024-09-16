@@ -1,7 +1,47 @@
-import React from 'react';
+import BookingCard from '@/components/booking/BookingCard';
+import BookingForm from '@/components/booking/BookingForm';
+import Loading from '@/components/shared/Loading/Loading';
+import Modal from '@/components/shared/Modal/Modal';
+import { useGetMyBookingQuery } from '@/redux/features/booking/bookingApi';
+import { ReviewDataType } from '@/types/common';
+import { useState } from 'react';
 
 function Booking() {
-  return <div>Booking</div>;
+  const [booking, setBooking] = useState('');
+  const [show, setShow] = useState(false);
+  const { data: bookings, isLoading } = useGetMyBookingQuery({});
+
+  if (isLoading) {
+    <Loading />;
+  }
+
+  const handleConfirmBooking = async (id: string) => {
+    setBooking(id);
+    setShow(true);
+  };
+
+  return (
+    <>
+      <Modal title="Booking" show={show} onClose={setShow}>
+        <BookingForm bookingId={booking} showModal={setShow} />
+      </Modal>
+      <div className="flex flex-col gap-4 p-4">
+        {bookings?.data.length !== 0 ? (
+          bookings?.data.map((booking: ReviewDataType) => (
+            <BookingCard
+              key={booking._id}
+              booking={booking}
+              confirmBooking={handleConfirmBooking}
+            />
+          ))
+        ) : (
+          <div className="text-xl text-center font-bold  py-12">
+            You don't have book any service yet
+          </div>
+        )}
+      </div>
+    </>
+  );
 }
 
 export default Booking;
