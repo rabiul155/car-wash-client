@@ -12,6 +12,7 @@ import ServiceDetails from '@/pages/ServiceDetails/ServiceDetails';
 import NotFoundPage from '@/pages/NotFound/NotFoundPage';
 import Review from '@/pages/Review/Review';
 import Booking from '@/pages/Booking/Booking';
+import ProtectedRoute from './ProtectedRoute';
 
 //Routes
 
@@ -42,7 +43,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/booking',
-        element: <Booking />,
+        element: (
+          <ProtectedRoute>
+            <Booking />
+          </ProtectedRoute>
+        ),
       },
       {
         path: '/review',
@@ -54,7 +59,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/dashboard',
-        element: <Dashboard />,
+        element: (
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        ),
       },
     ],
   },
