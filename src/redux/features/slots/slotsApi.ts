@@ -8,8 +8,28 @@ const slotsApi = baseApi.injectEndpoints({
         method: 'GET',
         params: queryStr,
       }),
+      providesTags: ['slot'],
+    }),
+    createSlots: builder.mutation({
+      query: (data) => ({
+        url: '/slots',
+        method: 'POST',
+        body: data,
+      }),
+    }),
+    updateSlots: builder.mutation({
+      query: (data) => ({
+        url: '/slots',
+        method: 'PATCH',
+        body: data,
+      }),
+      invalidatesTags: ['slot'],
     }),
   }),
 });
 
-export const { useGetTimeSlotsQuery } = slotsApi;
+export const {
+  useGetTimeSlotsQuery,
+  useCreateSlotsMutation,
+  useUpdateSlotsMutation,
+} = slotsApi;

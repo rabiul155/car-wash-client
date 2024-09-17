@@ -5,10 +5,11 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import ServiceTableRow from '@/components/slotManagement/ServiceTableRow';
+
 import Loading from '@/components/shared/Loading/Loading';
 import { SlotType } from '@/types/slot';
 import { useGetTimeSlotsQuery } from '@/redux/features/slots/slotsApi';
+import SlotTableRow from '@/components/slotManagement/SlotTableRow';
 
 function SlotManagement() {
   const { data, isLoading } = useGetTimeSlotsQuery({});
@@ -25,12 +26,14 @@ function SlotManagement() {
           <TableHead>Service Name</TableHead>
           <TableHead>Date</TableHead>
           <TableHead>Slot</TableHead>
-          <TableHead>Status</TableHead>
+          <TableHead className="flex items-center justify-end">
+            <div className=" w-24">Status</div>
+          </TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
         {data.data.map((slot: SlotType, index: number) => (
-          <ServiceTableRow slot={slot} index={index} />
+          <SlotTableRow slot={slot} index={index} />
         ))}
       </TableBody>
     </Table>
