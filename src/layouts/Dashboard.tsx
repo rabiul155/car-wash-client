@@ -46,7 +46,7 @@ function Dashboard() {
         <div className="w-52 hidden md:block">
           {navItem && <Sidebar navItem={navItem} />}
         </div>
-        <div className="flex-1">
+        <div className="flex-1 p-4">
           <Outlet />
         </div>
       </div>

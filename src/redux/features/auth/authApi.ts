@@ -17,7 +17,29 @@ const serviceApi = baseApi.injectEndpoints({
         body: data,
       }),
     }),
+
+    getUser: builder.query({
+      query: () => ({
+        url: '/auth',
+        method: 'GET',
+      }),
+      providesTags: ['user'],
+    }),
+
+    updateRole: builder.mutation({
+      query: (data) => ({
+        url: '/auth',
+        method: 'PATCH',
+        body: data,
+      }),
+      invalidatesTags: ['user'],
+    }),
   }),
 });
 
-export const { useLogInMutation, useSignUpMutation } = serviceApi;
+export const {
+  useLogInMutation,
+  useSignUpMutation,
+  useGetUserQuery,
+  useUpdateRoleMutation,
+} = serviceApi;
