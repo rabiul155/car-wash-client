@@ -1,5 +1,3 @@
-import { HiOutlineDotsVertical } from 'react-icons/hi';
-
 import Loading from '@/components/shared/Loading/Loading';
 import {
   useGetUserQuery,
