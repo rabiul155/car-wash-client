@@ -4,10 +4,16 @@ import { Input } from '../ui/input';
 import { useCancelBookingMutation } from '@/redux/features/booking/bookingApi';
 import { toast } from 'sonner';
 
+export type BookingType = {
+  id: string;
+  price: string;
+  date: string;
+  slot: string;
+};
+
 type BookingCardProps = {
   booking: any;
-
-  confirmBooking: (id: string) => void;
+  confirmBooking: (val: BookingType) => void;
 };
 
 function BookingCard(props: BookingCardProps) {
@@ -42,7 +48,7 @@ function BookingCard(props: BookingCardProps) {
             <div className="font-semibold">
               Status :{' '}
               <span className="text-green-500">
-                {props.booking.isConfirmed ? 'Confirmed' : 'Pending'}
+                {props.booking.isConfirmed ? 'Booked' : 'Pending'}
               </span>
             </div>
           </div>
@@ -68,7 +74,14 @@ function BookingCard(props: BookingCardProps) {
               Cancel
             </Button>
             <Button
-              onClick={() => props.confirmBooking(props.booking._id)}
+              onClick={() =>
+                props.confirmBooking({
+                  id: props.booking._id,
+                  price: service.price,
+                  date: slot.date,
+                  slot: `${slot.startTime} - ${slot.endTime}`,
+                })
+              }
               variant="outline"
               disabled={props.booking.isConfirmed}
               className="w-full h-8 text-gray-800"

@@ -1,4 +1,4 @@
-import BookingCard from '@/components/booking/BookingCard';
+import BookingCard, { BookingType } from '@/components/booking/BookingCard';
 import BookingForm from '@/components/booking/BookingForm';
 import Loading from '@/components/shared/Loading/Loading';
 import Modal from '@/components/shared/Modal/Modal';
@@ -7,7 +7,7 @@ import { ReviewDataType } from '@/types/common';
 import { useState } from 'react';
 
 function Booking() {
-  const [booking, setBooking] = useState('');
+  const [booking, setBooking] = useState<BookingType | undefined>();
   const [show, setShow] = useState(false);
   const { data: bookings, isLoading } = useGetMyBookingQuery({});
 
@@ -15,16 +15,18 @@ function Booking() {
     <Loading />;
   }
 
-  const handleConfirmBooking = async (id: string) => {
-    setBooking(id);
+  const handleConfirmBooking = async (val: BookingType) => {
+    setBooking(val);
     setShow(true);
   };
 
   return (
     <>
-      <Modal title="Booking" show={show} onClose={setShow}>
-        <BookingForm bookingId={booking} showModal={setShow} />
-      </Modal>
+      {booking && (
+        <Modal title="Amar_Pay" show={show} onClose={setShow}>
+          <BookingForm booking={booking} showModal={setShow} />
+        </Modal>
+      )}
       <div className="flex flex-col gap-4 p-4">
         {bookings?.data.length !== 0 ? (
           bookings?.data.map((booking: ReviewDataType) => (

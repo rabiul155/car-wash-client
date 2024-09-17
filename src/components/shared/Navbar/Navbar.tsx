@@ -54,12 +54,9 @@ function Navbar() {
               <button onClick={openNav}>
                 <FaBarsStaggered className="h-5 w-5 cursor-pointer md:hidden" />
               </button>
-              <Link
-                to={'/'}
-                className="text-xl font-bold flex items-center gap-2 "
-              >
-                <span>Car</span>
-                <span className="  text-yellow-500">Doctor</span>
+              <Link to={'/'} className="text-xl font-bold flex items-center  ">
+                <span>Car_</span>
+                <span className=" text-yellow-500">Doctor</span>
               </Link>
             </div>
             <ul className="hidden md:flex justify-center items-center gap-6">
