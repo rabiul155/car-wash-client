@@ -4,7 +4,7 @@ import { FaXmark, FaBarsStaggered } from 'react-icons/fa6';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { logout } from '@/redux/features/auth/authServices';
 
-type NavItem = {
+export type NavItem = {
   nav: string;
   link: string;
 };
