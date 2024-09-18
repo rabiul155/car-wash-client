@@ -52,7 +52,7 @@ function UserManagement() {
           <TableHead className="w-[100px]">#</TableHead>
           <TableHead>Name</TableHead>
           <TableHead>Email</TableHead>
-          <TableHead>Role</TableHead>
+          <TableHead>Role(edit)</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>

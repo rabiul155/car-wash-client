@@ -12,7 +12,7 @@ function Button(props: PropsType) {
     <button
       onClick={props.onClick}
       type={props.type || 'button'}
-      className="w-full cursor-pointer text-center py-1.5 font-semibold border border-gray-800 rounded-full transition-all duration-300 hover:bg-gray-800 hover:text-white"
+      className="w-full cursor-pointer text-center px-3 py-1.5 font-semibold border border-gray-800 rounded-full transition-all duration-300 hover:bg-gray-800 hover:text-white"
     >
       {props.children}
     </button>

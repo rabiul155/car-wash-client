@@ -1,33 +1,7 @@
 import { Input } from '../ui/input';
 import SelectField from '../shared/SelectField/SelectField';
 import { CiSearch } from 'react-icons/ci';
-
-const category = [
-  {
-    label: 'Brake Repair',
-    value: 'Brake Repair',
-  },
-  {
-    label: 'Tire Service',
-    value: 'Tire Service',
-  },
-  {
-    label: 'Engine Repair',
-    value: 'Engine Repair',
-  },
-  {
-    label: 'Suspension System',
-    value: 'Suspension System',
-  },
-  {
-    label: 'Maintenance',
-    value: 'Maintenance',
-  },
-  {
-    label: 'Electrical System',
-    value: 'Electrical System',
-  },
-];
+import { categoryOptions } from '@/utils/helper';
 
 const sortBy = [
   {
@@ -58,7 +32,7 @@ function FilterService(props: FilteringProps) {
       <div className="w-[90%] flex flex-col lg:flex-row gap-4 justify-between mx-auto py-3">
         <div>
           <SelectField
-            items={category}
+            items={categoryOptions}
             placeholder="Category"
             handleValueChange={(val) =>
               props.handleSearchParams('category', val)

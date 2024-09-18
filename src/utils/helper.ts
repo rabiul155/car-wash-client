@@ -20,6 +20,33 @@ export const createArray = (val: number) => {
   return arr;
 };
 
+export const categoryOptions = [
+  {
+    label: 'Brake Repair',
+    value: 'Brake Repair',
+  },
+  {
+    label: 'Tire Service',
+    value: 'Tire Service',
+  },
+  {
+    label: 'Engine Repair',
+    value: 'Engine Repair',
+  },
+  {
+    label: 'Suspension System',
+    value: 'Suspension System',
+  },
+  {
+    label: 'Maintenance',
+    value: 'Maintenance',
+  },
+  {
+    label: 'Electrical System',
+    value: 'Electrical System',
+  },
+];
+
 export const dateHelper = (date: Date) => {
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');

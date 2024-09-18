@@ -24,7 +24,7 @@ function TextAreaField(props: PropsType) {
         onChange={props.onChange}
         onBlur={props.onBlur}
         className={twMerge(
-          `h-12 focus:border-0 focus:outline-none`,
+          `h-10 focus:border-0 focus:outline-none`,
           props.className,
         )}
         required

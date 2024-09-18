@@ -23,7 +23,7 @@ function SelectField(props: PropsType) {
     <div className="flex flex-col gap-1">
       {props.label && <label className="mx-1 text-sm">{props.label} </label>}
       <Select onValueChange={props.handleValueChange}>
-        <SelectTrigger className={twMerge(`w-32 h-8 z-0`, props.className)}>
+        <SelectTrigger className={twMerge(` h-8 z-0`, props.className)}>
           <SelectValue placeholder={props.placeholder || 'Select One'} />
         </SelectTrigger>
         <SelectContent>

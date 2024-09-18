@@ -27,7 +27,7 @@ function SlotTable() {
           <TableHead>Date</TableHead>
           <TableHead>Slot</TableHead>
           <TableHead className="flex items-center justify-end">
-            <div className=" w-24">Status</div>
+            <div className=" w-24">Status(edit)</div>
           </TableHead>
         </TableRow>
       </TableHeader>

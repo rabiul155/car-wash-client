@@ -104,7 +104,7 @@ function SlotForm() {
                 }
               />
               <CalenderDateField
-                label="Booking Date"
+                label="Date"
                 date={date}
                 setDate={handleDateChange}
               />

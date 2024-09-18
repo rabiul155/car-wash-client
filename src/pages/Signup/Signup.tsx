@@ -1,5 +1,6 @@
 import Button from '@/components/shared/Button/Button';
 import InputField from '@/components/shared/InputField/InputField';
+import TextAreaField from '@/components/shared/TextAreaField/TextAreaField';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useSignUpMutation } from '@/redux/features/auth/authApi';
 import { setUser } from '@/redux/features/auth/authServices';
@@ -107,10 +108,9 @@ function Signup() {
                   formik.touched.password ? formik.errors.password : undefined
                 }
               />
-              <InputField
+              <TextAreaField
                 label="Address"
                 name="address"
-                type="text"
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
                 value={formik.values.address}
