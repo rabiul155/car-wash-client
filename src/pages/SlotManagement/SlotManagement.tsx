@@ -1,42 +1,21 @@
-import {
-  Table,
-  TableBody,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table';
-
-import Loading from '@/components/shared/Loading/Loading';
-import { SlotType } from '@/types/slot';
-import { useGetTimeSlotsQuery } from '@/redux/features/slots/slotsApi';
-import SlotTableRow from '@/components/slotManagement/SlotTableRow';
+import SlotForm from '@/components/slotManagement/SlotForm';
+import SlotTable from '@/components/slotManagement/SlotTable';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 function SlotManagement() {
-  const { data, isLoading } = useGetTimeSlotsQuery({});
-
-  if (isLoading) {
-    return <Loading />;
-  }
-
   return (
-    <Table>
-      <TableHeader>
-        <TableRow>
-          <TableHead className="w-[100px]">#</TableHead>
-          <TableHead>Service Name</TableHead>
-          <TableHead>Date</TableHead>
-          <TableHead>Slot</TableHead>
-          <TableHead className="flex items-center justify-end">
-            <div className=" w-24">Status</div>
-          </TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {data.data.map((slot: SlotType, index: number) => (
-          <SlotTableRow slot={slot} index={index} />
-        ))}
-      </TableBody>
-    </Table>
+    <Tabs defaultValue="slot_list" className="w-full">
+      <TabsList className="grid w-full grid-cols-2">
+        <TabsTrigger value="slot_list">Slot List</TabsTrigger>
+        <TabsTrigger value="slot_form">Add Slot</TabsTrigger>
+      </TabsList>
+      <TabsContent value="slot_list">
+        <SlotTable />
+      </TabsContent>
+      <TabsContent value="slot_form">
+        <SlotForm />
+      </TabsContent>
+    </Tabs>
   );
 }
 

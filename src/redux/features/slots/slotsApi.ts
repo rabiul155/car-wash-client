@@ -16,6 +16,7 @@ const slotsApi = baseApi.injectEndpoints({
         method: 'POST',
         body: data,
       }),
+      invalidatesTags: ['slot'],
     }),
     updateSlots: builder.mutation({
       query: (data) => ({

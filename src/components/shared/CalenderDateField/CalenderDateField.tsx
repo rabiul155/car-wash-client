@@ -12,12 +12,12 @@ type PropsType = {
 
 function CalenderDateField(props: PropsType) {
   return (
-    <div className="">
-      <h4 className="my-1 text-gray-700">{props.label} </h4>
+    <div className="w-full">
+      <h4 className="my-1 text-gray-800 text-sm">{props.label} </h4>
       <DatePicker
         showIcon
         className={twMerge(
-          `min-w-32 h-8 border rounded-md border-gray-300 px-2`,
+          `w-full h-8 border rounded-md border-gray-300 px-2`,
           props.className,
         )}
         selected={props.date}

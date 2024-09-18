@@ -4,7 +4,7 @@ type PropsType = {
   type?: 'button' | 'submit';
   className?: string;
   children: React.ReactNode;
-  onClick: () => void;
+  onClick?: () => void;
 };
 
 function Button(props: PropsType) {

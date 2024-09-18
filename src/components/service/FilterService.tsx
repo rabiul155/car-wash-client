@@ -4,20 +4,28 @@ import { CiSearch } from 'react-icons/ci';
 
 const category = [
   {
-    label: 'Washing Service',
-    value: 'Washing Service',
+    label: 'Brake Repair',
+    value: 'Brake Repair',
   },
   {
-    label: 'Repairing Service',
-    value: 'Repairing Service',
+    label: 'Tire Service',
+    value: 'Tire Service',
   },
   {
-    label: 'Maintenance Service',
-    value: 'Maintenance Service',
+    label: 'Engine Repair',
+    value: 'Engine Repair',
   },
   {
-    label: 'Master Service',
-    value: 'Master Service',
+    label: 'Suspension System',
+    value: 'Suspension System',
+  },
+  {
+    label: 'Maintenance',
+    value: 'Maintenance',
+  },
+  {
+    label: 'Electrical System',
+    value: 'Electrical System',
   },
 ];
 
