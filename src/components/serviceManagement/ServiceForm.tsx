@@ -1,4 +1,5 @@
 import { useFormik } from 'formik';
+import { Dispatch, SetStateAction } from 'react';
 import { toast } from 'sonner';
 import InputField from '../shared/InputField/InputField';
 import { Button } from '../ui/button';
@@ -12,7 +13,7 @@ import {
 } from '@/redux/features/services/servicesApi';
 
 type ServiceFormType = {
-  showModal: React.Dispatch<React.SetStateAction<boolean>>;
+  showModal: (val: boolean) => void;
   service?: ServiceType;
 };
 
@@ -32,15 +33,17 @@ function ServiceForm(props: ServiceFormType) {
     onSubmit: async (values) => {
       values.price = Number(values.price);
       values.duration = Number(values.duration);
+
       try {
         if (props.service) {
-          await updateService({ id: props.service._id, data: values });
+          await updateService({ id: props.service._id, service: values });
           toast.success('Service updated successfully');
+          props.showModal(false);
         } else {
           await createService(values);
           toast.success('Service Created successfully');
+          props.showModal(false);
         }
-        props.showModal(false);
       } catch (err: any) {
         toast.error(err.data?.message || 'Something went wrong');
         props.showModal(false);

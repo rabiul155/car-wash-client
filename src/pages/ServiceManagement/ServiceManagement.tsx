@@ -16,22 +16,34 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { useGetServicesQuery } from '@/redux/features/services/servicesApi';
+import {
+  useDeleteServiceMutation,
+  useGetServicesQuery,
+} from '@/redux/features/services/servicesApi';
 import Loading from '@/components/shared/Loading/Loading';
 import { ServiceType } from '@/types/service';
 import Modal from '@/components/shared/Modal/Modal';
 import ServiceForm from '@/components/serviceManagement/ServiceForm';
+import { toast } from 'sonner';
 
 function ServiceManagement() {
   const [service, setService] = useState<ServiceType | undefined>();
   const [addServiceModal, setAddServiceModal] = useState(false);
   const [editServiceModal, setEditServiceModal] = useState(false);
   const { data, isLoading } = useGetServicesQuery({});
+  const [deleteService] = useDeleteServiceMutation();
   if (isLoading) {
     return <Loading />;
   }
 
-  const handleDeleteService = (_id: string) => {};
+  const handleDeleteService = async (_id: string) => {
+    try {
+      await deleteService(_id);
+      toast.success('Service deleted');
+    } catch (err) {
+      toast.error('Something went wrong');
+    }
+  };
   return (
     <>
       {/* add service modal */}
@@ -49,7 +61,7 @@ function ServiceManagement() {
         show={editServiceModal}
         onClose={setEditServiceModal}
       >
-        <ServiceForm service={service} showModal={setAddServiceModal} />
+        <ServiceForm service={service} showModal={setEditServiceModal} />
       </Modal>
       <div>
         {/* page Heder  */}

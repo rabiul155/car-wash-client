@@ -18,12 +18,11 @@ const serviceApi = baseApi.injectEndpoints({
       providesTags: ['service'],
     }),
     updateService: builder.mutation({
-      query: ({ id, data }) => {
-        console.log(data);
+      query: ({ id, service }) => {
         return {
           url: `/services/${id}`,
-          method: 'PATCH',
-          body: data,
+          method: 'PUT',
+          body: service,
         };
       },
       invalidatesTags: ['service'],
