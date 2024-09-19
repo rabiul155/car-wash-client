@@ -65,10 +65,7 @@ function Signup() {
           <CardTitle>Sign Up</CardTitle>
         </CardHeader>
         <CardContent>
-          <form
-            onSubmit={formik.handleSubmit}
-            className="mt- flex flex-col gap-4"
-          >
+          <form onSubmit={formik.handleSubmit} className=" flex flex-col gap-4">
             <div className="grid w-full items-center gap-2">
               <InputField
                 label="Name"
@@ -120,9 +117,7 @@ function Signup() {
               />
             </div>
             <footer className="mt-1 flex justify-center">
-              <Button type="submit" onClick={() => {}}>
-                Sign Up
-              </Button>
+              <Button type="submit">Sign Up</Button>
             </footer>
           </form>
         </CardContent>

@@ -30,7 +30,7 @@ function SlotTableRow(props: ServiceTableRowProps) {
   return (
     <TableRow>
       <TableCell className="w-[100px]">{props.index + 1}</TableCell>
-      <TableCell>{props.slot.service.name}</TableCell>
+      <TableCell>{props.slot?.service?.name}</TableCell>
       <TableCell>{props.slot.date}</TableCell>
 
       <TableCell>

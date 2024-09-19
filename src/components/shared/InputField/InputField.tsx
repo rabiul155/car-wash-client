@@ -8,6 +8,7 @@ type PropsType = {
   type?: 'text' | 'email' | 'number' | 'password';
   value: string | number | undefined;
   className?: string;
+  disabled?: boolean;
   error?: string;
   onBlur: (event: React.FocusEvent<HTMLInputElement>) => void;
   onChange: (event: ChangeEvent<any>) => void;
@@ -22,6 +23,7 @@ function InputField(props: PropsType) {
         id={props.name}
         name={props.name}
         value={props.value}
+        disabled={props.disabled}
         onChange={props.onChange}
         onBlur={props.onBlur}
         className={twMerge(
