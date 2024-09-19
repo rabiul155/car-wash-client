@@ -6,47 +6,42 @@ import InputField from '@/components/shared/InputField/InputField';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { toast } from 'sonner';
+import { useUpdateUserMutation } from '@/redux/features/auth/authApi';
 
 const userValidationSchema = Yup.object().shape({
   name: Yup.string().min(1, 'Name is required').required('Name is required'),
   phone: Yup.string()
     .min(10, 'Phone number must be at least 10 digits')
     .required('Phone number is required'),
-  password: Yup.string()
-    .min(6, 'Password must be at least 6 characters long')
-    .required('Password is required'),
+
   address: Yup.string()
-    .min(1, 'Address is required')
+    .min(6, 'Address is too sort')
     .required('Address is required'),
-  role: Yup.mixed()
-    .oneOf(['user', 'admin'], 'Invalid role')
-    .required('Role is required'),
 });
 
 function Account() {
   const [edit, setEdit] = useState(false);
   const user = useAppSelector((state) => state.auth.user);
+  const [updateUser] = useUpdateUserMutation();
 
   const formik = useFormik({
     initialValues: {
       name: user?.name,
       email: user?.email,
-      phone: user?.phone || '',
-      password: user?.password,
+      phone: user?.phone,
       address: user?.address,
     },
     validationSchema: userValidationSchema,
 
     onSubmit: async (values) => {
-      // setEdit(false);
-      // values.phone = values.phone.toString();
-      console.log(values);
-
-      // try {
-      //   console.log(values);
-      // } catch (err: any) {
-      //   toast.error(err.data.message || 'An error occur');
-      // }
+      values.phone = values.phone?.toString();
+      try {
+        await updateUser({ _id: user?._id, user: values });
+        toast.success('User updated successfully');
+        setEdit(false);
+      } catch (err: any) {
+        toast.error(err.data.message || 'An error occur');
+      }
     },
   });
 
@@ -63,11 +58,15 @@ function Account() {
       </div>
       <hr />
       <div className="md:px-4 py-4 text-gray-800 flex flex-col gap-4">
-        <form onSubmit={formik.handleSubmit} className="flex flex-col gap-4">
+        <form
+          onSubmit={formik.handleSubmit}
+          className="flex flex-col gap-4 w-full lg:w-[80%]"
+        >
           <InputField
             label="Name"
             name="name"
             type="text"
+            disabled={!edit}
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
             value={formik.values.name}
@@ -77,6 +76,7 @@ function Account() {
             label="Email"
             name="email"
             type="email"
+            disabled={true}
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
             value={formik.values.email}
@@ -86,24 +86,17 @@ function Account() {
             label="Phone"
             name="phone"
             type="number"
+            disabled={!edit}
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
             value={formik.values.phone}
             error={formik.touched.phone ? formik.errors.phone : undefined}
           />
-          <InputField
-            label="Password"
-            name="password"
-            type="password"
-            onBlur={formik.handleBlur}
-            onChange={formik.handleChange}
-            value={formik.values.password}
-            error={formik.touched.password ? formik.errors.password : undefined}
-          />
 
           <TextAreaField
             label="Address"
             name="address"
+            disabled={!edit}
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
             value={formik.values.address}

@@ -34,6 +34,14 @@ const serviceApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ['user'],
     }),
+    updateUser: builder.mutation({
+      query: ({ _id, user }) => ({
+        url: `/auth/${_id}`,
+        method: 'PATCH',
+        body: user,
+      }),
+      invalidatesTags: ['user'],
+    }),
   }),
 });
 
@@ -42,4 +50,5 @@ export const {
   useSignUpMutation,
   useGetUserQuery,
   useUpdateRoleMutation,
+  useUpdateUserMutation,
 } = serviceApi;
