@@ -39,7 +39,6 @@ function Login() {
           navigate('/');
         }
       } catch (error: any) {
-       
         toast(error.data.message || 'An error occurred');
       }
     },
