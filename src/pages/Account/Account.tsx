@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import Button from '@/components/shared/Button/Button';
-import { useAppSelector } from '@/redux/hooks';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import TextAreaField from '@/components/shared/TextAreaField/TextAreaField';
 import InputField from '@/components/shared/InputField/InputField';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { toast } from 'sonner';
 import { useUpdateUserMutation } from '@/redux/features/auth/authApi';
+import { setUser } from '@/redux/features/auth/authServices';
 
 const userValidationSchema = Yup.object().shape({
   name: Yup.string().min(1, 'Name is required').required('Name is required'),
@@ -22,6 +23,7 @@ const userValidationSchema = Yup.object().shape({
 function Account() {
   const [edit, setEdit] = useState(false);
   const user = useAppSelector((state) => state.auth.user);
+  const dispatch = useAppDispatch();
   const [updateUser] = useUpdateUserMutation();
 
   const formik = useFormik({
@@ -36,7 +38,11 @@ function Account() {
     onSubmit: async (values) => {
       values.phone = values.phone?.toString();
       try {
-        await updateUser({ _id: user?._id, user: values });
+        const updatedUser = await updateUser({
+          _id: user?._id,
+          user: values,
+        }).unwrap();
+        dispatch(setUser({ user: updatedUser.data, token: updatedUser.token }));
         toast.success('User updated successfully');
         setEdit(false);
       } catch (err: any) {
