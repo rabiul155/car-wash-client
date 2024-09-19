@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { FaRegHeart, FaStar } from 'react-icons/fa';
 import Loading from '@/components/shared/Loading/Loading';
@@ -66,8 +66,8 @@ function ServiceDetails() {
               <small>min</small>
             </h3>
             <div className="mt-2 mb-4 flex items-center gap-[2px] ">
-              {[1, 2, 3, 4].map((i, index) => (
-                <FaStar key={index} className="text-yellow-500 size-4" />
+              {[1, 2, 3, 4].map((i) => (
+                <FaStar key={i} className="text-yellow-500 size-4" />
               ))}
               <small className=" text-gray-500 mt-[2px] mx-2">
                 Ratings : 4324

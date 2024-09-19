@@ -1,5 +1,5 @@
 import Button from '@/components/shared/Button/Button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { useGetServicesQuery } from '@/redux/features/services/servicesApi';
 import { useFormik } from 'formik';
 import { toast } from 'sonner';

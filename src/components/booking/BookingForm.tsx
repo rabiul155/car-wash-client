@@ -21,7 +21,7 @@ function BookingForm(props: PropsType) {
       pin: '',
     },
 
-    onSubmit: async (values) => {
+    onSubmit: async () => {
       if (!method) {
         return toast.error('Please select a method');
       }

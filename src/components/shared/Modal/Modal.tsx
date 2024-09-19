@@ -1,10 +1,5 @@
 import { FaXmark } from 'react-icons/fa6';
-import {
-  Dialog,
-  DialogBackdrop,
-  DialogPanel,
-  DialogTitle,
-} from '@headlessui/react';
+import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react';
 
 type PropsType = {
   show: boolean;

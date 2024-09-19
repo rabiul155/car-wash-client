@@ -45,8 +45,8 @@ function ServiceCard(props: PropsType) {
           <div className="flex items-center">
             <div className="flex items-center gap-2">
               <div className="flex gap-1">
-                {[0, 1, 2, 3].map((i, index) => (
-                  <FaStar key={index} className="text-yellow-500 size-5" />
+                {[0, 1, 2, 3].map((i) => (
+                  <FaStar key={i} className="text-yellow-500 size-5" />
                 ))}
               </div>
               <small className=" text-gray-500 mt-[2px] mx-2">
