@@ -39,7 +39,7 @@ function SlotForm() {
   const formik = useFormik({
     initialValues: {
       service: '',
-      date: '',
+      date: dateHelper(date),
       startTime: '',
       endTime: '',
     },
@@ -107,6 +107,7 @@ function SlotForm() {
                 label="Date"
                 date={date}
                 setDate={handleDateChange}
+                error={formik.touched.date ? formik.errors.date : undefined}
               />
               <SelectField
                 label="Select start time"

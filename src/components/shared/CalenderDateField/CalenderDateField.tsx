@@ -7,6 +7,7 @@ type PropsType = {
   label: string;
   date: Date;
   className?: string;
+  error?: string;
   setDate: (date: Date) => void;
 };
 
@@ -23,6 +24,9 @@ function CalenderDateField(props: PropsType) {
         selected={props.date}
         onChange={(date) => props.setDate(date as Date)}
       />
+      {props?.error && (
+        <div className="px-1 text-red-500 text-xs italic">{props.error}</div>
+      )}
     </div>
   );
 }
