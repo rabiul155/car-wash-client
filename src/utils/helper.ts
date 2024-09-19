@@ -45,6 +45,15 @@ export const categoryOptions = [
     label: 'Electrical System',
     value: 'Electrical System',
   },
+  {
+    label: 'Tire Service',
+    value: 'Tire Service',
+  },
+
+  {
+    label: 'AC and Heating',
+    value: 'AC and Heating',
+  },
 ];
 
 export const dateHelper = (date: Date) => {
